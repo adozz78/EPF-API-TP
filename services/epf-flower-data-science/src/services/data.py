@@ -1,7 +1,11 @@
 from kaggle.api.kaggle_api_extended import KaggleApi
 from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
+import json
 import pandas as pd
+import joblib
+import os
 
 def download_iris_dataset():
     api = KaggleApi()
@@ -35,11 +39,42 @@ def split_dataset():
         df = pd.read_json(dataset_processed)
         train_df, test_df = train_test_split(df, test_size=0.2)
         return {
-            "train": train_df.to_json(orient='records'),
-            "test": test_df.to_json(orient='records')
+            train_df.to_json(orient='records'),
+            test_df.to_json(orient='records')
         }
     except FileNotFoundError:
         return {"error": "Dataset file not found."}
+
+def train_dataset():
+    train, test = split_dataset()
+
+    train_df = pd.read_json(train)
+
+    # Separating X_train and y_train
+    X_train = train_df.drop(columns=["Species"])
+    y_train = train_df["Species"]
+
+    # Load model parameters from JSON file
+    parameters_file_path = "services/epf-flower-data-science/src/config/model_parameters.json"
+    with open(parameters_file_path, 'r') as file:
+        model_parameters = json.load(file)
+
+    # Initialize and train the model with train data
+    model = RandomForestClassifier(**model_parameters)
+    model.fit(X_train, y_train)
+
+    if not os.path.exists('services/epf-flower-data-science/src/models'):
+        os.makedirs('services/epf-flower-data-science/src/models')
+
+    # Store the model
+    model_save_path = 'services/epf-flower-data-science/src/models/random_forest_model.joblib'
+    joblib.dump(model, model_save_path)
+
+    return {"status": "Model trained and saved successfully"}
+
+
+
+
 
     
 

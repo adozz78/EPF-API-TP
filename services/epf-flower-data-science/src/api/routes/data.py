@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from src.services.data import download_iris_dataset,load_iris_dataset,processing_dataset,split_dataset
+from src.services.data import download_iris_dataset,load_iris_dataset,processing_dataset,split_dataset, train_dataset
 
 router = APIRouter()
 
@@ -24,6 +24,13 @@ def get_processed_iris_dataset():
 @router.get("/split")
 def split_iris_dataset():
     result = split_dataset()
+    if "error" in result:
+        raise HTTPException(status_code=404, detail=result["error"])
+    return result
+
+@router.get("/train")
+def train_iris_dataset():
+    result = train_dataset()
     if "error" in result:
         raise HTTPException(status_code=404, detail=result["error"])
     return result
