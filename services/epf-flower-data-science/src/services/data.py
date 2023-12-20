@@ -72,6 +72,23 @@ def train_dataset():
 
     return {"status": "Model trained and saved successfully"}
 
+def predict():
+    
+    # Load the trained model
+    model_save_path = 'services/epf-flower-data-science/src/models/random_forest_model.joblib'
+    try:
+        model = joblib.load(model_save_path)
+    except FileNotFoundError:
+        return {"error": "Trained model not found."}
+    
+    train, test = split_dataset()
+    test_df = pd.read_json(test)
+    
+    X_test = test_df.drop(columns=["Species"])
+    y_pred = pd.DataFrame(model.predict(X_test))
+
+    return y_pred.to_json(orient="records")
+
 
 
 

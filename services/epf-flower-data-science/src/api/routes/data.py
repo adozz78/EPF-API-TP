@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from src.services.data import download_iris_dataset,load_iris_dataset,processing_dataset,split_dataset, train_dataset
+from src.services.data import download_iris_dataset,load_iris_dataset,processing_dataset,split_dataset, train_dataset, predict
 
 router = APIRouter()
 
@@ -31,6 +31,13 @@ def split_iris_dataset():
 @router.get("/train")
 def train_iris_dataset():
     result = train_dataset()
+    if "error" in result:
+        raise HTTPException(status_code=404, detail=result["error"])
+    return result
+
+@router.get("/predict")
+def predict_iris_dataset():
+    result = predict()
     if "error" in result:
         raise HTTPException(status_code=404, detail=result["error"])
     return result
