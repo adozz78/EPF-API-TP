@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "ozanneproject",
+  "private_key_id": "bf92e3c7b6155cda97f1e6912b194ed875b82fdb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC72ueATRkh6yPG\n3rB7nK/6WsLZKB6CVF8zM3awGifmE6uCpMCbj0CwCn46lpFdwXfH65q+Sk9hkXtf\nbMuLfCkRVEQQieApqG3fQi/+7jfj2I2VD0gsHfj8noQTQlUwj/MxsEDoSYDm5lTp\n1l3nxILXp42kQF/liPuu4ujQTr0ofcVJIVky0MzXbuWk/m6cZT7YpxG0OtzyTDJB\nUvmLjdfcHHn0hoKK+7OuVRxDSICziM8S2NfqSd+8os8x1+UF2w5Fd8B5zvHCnISK\nCbgIJOSvyz4mRfdufCh5RjXQoyUFrZtEgLcolDI2UdmeHpHtJCmyn3Jc4rXMyKLk\n6x6CkOWbAgMBAAECggEAC/osiXMg95co7EyVfwQh+jngM31J2LBtc3PEDP1V7ubx\nJ/6+IwzyqGa63pxr/0jPDMmaT6ioQAXJEm/62FVdvvOa9Vz9FFrfSn1LVxs0KAxO\nFqNnTBzLG7w1mo6/pL2A2Xmt4cGR/ObRoikfSqAuYXaW4tKR6q4dsexYwLNMfzDN\ntQM2vIJYsEhmpY6YL/ykW42l9V9QB/+N9hyq+EuDEPbZZEAYRstF3vQFX0v3O77/\nTm8YjxcMX6qu4hChVwl2qYwyllwUq+RbILBsT2rfR2UFU7Q20yD7MECnpdrfU0L8\nP3woxiFSYjbBkcjTiAdIbEDm5JmHzLIMKGXgr61ZCQKBgQDbj+u5G5Sv2WuW45pm\nxNvXfaZ9rr3YxWfZ7oCiAo1+pHuNbcGUqa8uyKeTT/mu5W4Gh/p4dzAkMoB4ypUt\n1OmNbJUpr/Rfjeim1yv0sDUhd2nMF/0gCQJ4HLqT01DvgxC/hfvnU/LDnTJMDBsC\nFJjV9UgVhZrJzgW41DFgDoG86QKBgQDbB+kWv9VzL4KnQbpubUgDBTq/4vqeFk9o\n6pmqdgKQBW0h4g5yX+buE7nUWXLADjxqSfaanwWMMsvD/jgfVUlBMO7VfaDq+2L2\nig9boULEF52YXSl4sFLbglNV3a0OMymOHzudHYAp6rC8b7YaMYOMn3RFb+4NAPIZ\nHve9cGlr4wKBgCA5wHxbyvgAbmUoJNpenHHFdHFP+3dcigCXm/Orcj8bPzMj39zF\nBvxT4RyjCV+dNwfoX1/dBojZjLet7DVc4aarQD1tIO4BcxtBy6bPUg0GbNXS04kn\nKWCdvtjBlEiDMSsbLDzoumHxqZc106T7hu8oYBsgj/Z8saROKK0TlAE5AoGBAIbE\nQ0LgHfGVlgpbgt5XFyvkl9VhT1rd11ZyosIjgkgjTpa+hK0THP/32ysxLk3FdJ7h\ni35vwfYVexLI5LdCvqQB+7IYbl6m9qlDIVf7zRzievE4wT+lHhY6BhSbJNPL3xG3\nXfK6KBWidcQ76AwN0yc/JUdkK1CM+GlEiKJi/DqJAoGAZIhuMo7UQXQYn1iPx3HK\n9PrzFrqdgyaM2abgHJGZp6Gx1YrfjP5WA9IXMsqi/0nj4WypsSRtVLbJV23ZOsyA\n05bu74mJqUmpdrsstE6VMOTjD3unsrm0PNKfcB309CI3MmStoyAGbk1vrQd/A7EV\nJuTDT7sMiTIRDcNjYVLLaQs=\n-----END PRIVATE KEY-----\n",
+  "client_email": "service-account-ozanne-project@ozanneproject.iam.gserviceaccount.com",
+  "client_id": "118409930017107223200",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-ozanne-project%40ozanneproject.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

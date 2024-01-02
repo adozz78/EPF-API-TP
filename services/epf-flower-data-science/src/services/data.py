@@ -6,8 +6,15 @@ import json
 import pandas as pd
 import joblib
 import os
+from google.cloud import firestore
 
 def download_iris_dataset():
+    """
+    Downloads the Iris dataset from Kaggle.
+
+    Returns:
+        str : Status of the dataset download.
+    """
     api = KaggleApi()
     api.authenticate()
     api.dataset_download_files('uciml/iris', path='services/epf-flower-data-science/src/data', unzip=True)
@@ -15,6 +22,12 @@ def download_iris_dataset():
     return {"status": "Dataset downloaded correctly"}
 
 def load_iris_dataset():
+    """
+    Loads the Iris dataset.
+
+    Returns:
+        JSON or str : Loaded dataset or error message if not found.
+    """
     file_path = 'services/epf-flower-data-science/src/data/Iris.csv'
     try:
         df = pd.read_csv(file_path)
@@ -23,6 +36,12 @@ def load_iris_dataset():
         return {"error": "Dataset file not found."}
 
 def processing_dataset():
+    """
+    Processes the loaded Iris dataset by cleaning the Species column.
+
+    Returns:
+        JSON or str : Processed dataset or error message if not found.
+    """
     data = load_iris_dataset()
     # file_path = 'services/epf-flower-data-science/src/data/Iris.csv'
     try:
@@ -33,6 +52,12 @@ def processing_dataset():
         return {"error": "Dataset file not found."}
     
 def split_dataset():
+    """
+    Splits the processed dataset into training and testing sets.
+
+    Returns:
+        JSON or str: Training and testing datasets or error message if not found.
+    """
     dataset_processed = processing_dataset()
 
     try:
@@ -46,6 +71,12 @@ def split_dataset():
         return {"error": "Dataset file not found."}
 
 def train_dataset():
+    """
+    Trains a machine learning model using the training dataset.
+
+    Returns:
+        str : Status message indicating successful model training or error message if not found.
+    """
     train, test = split_dataset()
 
     train_df = pd.read_json(train)
@@ -73,7 +104,12 @@ def train_dataset():
     return {"status": "Model trained and saved successfully"}
 
 def predict():
-    
+    """
+    Makes predictions using the trained model and test dataset.
+
+    Returns:
+        JSON or str: Predictions or error message if not found.
+    """
     # Load the trained model
     model_save_path = 'services/epf-flower-data-science/src/models/random_forest_model.joblib'
     try:
@@ -88,6 +124,56 @@ def predict():
     y_pred = pd.DataFrame(model.predict(X_test))
 
     return y_pred.to_json(orient="records")
+
+def get_firestore_data():
+    """
+    Retrieves data from a Firestore collection and document.
+
+    Returns:
+        str or None: Retrieved data or None if not found.
+    """
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "services\epf-flower-data-science\src\config\ozanneproject-bf92e3c7b615.json"
+    # Initialize Firestore
+    db = firestore.Client()
+
+    # Reference the collection and document
+    collection_ref = db.collection("parameters")
+    document_ref = collection_ref.document("XKam3IqgkUyoRHDuHjIJ")
+
+    # Get data from the document
+    doc_data = document_ref.get().to_dict()
+
+    # Check if data was retrieved
+    if doc_data:
+        return doc_data
+    else:
+        return None  
+    
+def update_firestore_data():
+    """
+    Updates data in a Firestore collection and document (here by updating the n_estimators).
+
+    Returns:
+        str : Status message indicating successful data update.
+    """
+
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "services\epf-flower-data-science\src\config\ozanneproject-bf92e3c7b615.json"
+    # Initialize Firestore
+    db = firestore.Client()
+
+    # Reference the collection and document
+    collection_ref = db.collection("parameters")
+    document_ref = collection_ref.document("XKam3IqgkUyoRHDuHjIJ")
+
+    # Get data from the document
+    doc_data = document_ref.get().to_dict()
+
+    doc_data["n_estimators"] = 105
+    document_ref.set(doc_data)
+
+    return {"Firestore database updated with success"}
+
+
 
 
 
