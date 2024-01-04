@@ -149,14 +149,18 @@ def get_firestore_data():
     else:
         return None  
     
-def update_firestore_data():
+
+def update_firestore_data(parameter_name, parameter_value):
     """
-    Updates data in a Firestore collection and document (here by updating the n_estimators).
+    Creates or adds a parameter in a Firestore collection.
+
+    Args:
+        parameter_name (str): Name of the parameter.
+        parameter_value: Value of the parameter.
 
     Returns:
-        str : Status message indicating successful data update.
+        str: Status message indicating successful parameter creation.
     """
-
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "services\epf-flower-data-science\src\config\ozanneproject-bf92e3c7b615.json"
     # Initialize Firestore
     db = firestore.Client()
@@ -165,13 +169,15 @@ def update_firestore_data():
     collection_ref = db.collection("parameters")
     document_ref = collection_ref.document("parameters")
 
-    # Get data from the document
-    doc_data = document_ref.get().to_dict()
+    # Get existing data from the document
+    doc_data = document_ref.get().to_dict() 
 
-    doc_data["n_estimators"] = 105
+    # Add or update the parameter
+    doc_data[parameter_name] = parameter_value
     document_ref.set(doc_data)
 
-    return {"Firestore database updated with success"}
+    return {"Firestore parameter edited with success"}
+
 
 
 

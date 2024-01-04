@@ -51,7 +51,16 @@ def get_firestore():
 
 @router.get("/update_firestore")
 def update_firestore():
-    result = update_firestore_data()
+    #here we change the n criterion parameter
+    result = update_firestore_data('n_estimators',300)
+    if "error" in result:
+        raise HTTPException(status_code=404, detail=result["error"])
+    return result
+
+@router.get("/add_parameter_firestore")
+def add_parameter():
+    #here we add a useless parameter 
+    result = update_firestore_data('test_param',400)
     if "error" in result:
         raise HTTPException(status_code=404, detail=result["error"])
     return result
