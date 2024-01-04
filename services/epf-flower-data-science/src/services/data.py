@@ -138,7 +138,7 @@ def get_firestore_data():
 
     # Reference the collection and document
     collection_ref = db.collection("parameters")
-    document_ref = collection_ref.document("XKam3IqgkUyoRHDuHjIJ")
+    document_ref = collection_ref.document("parameters")
 
     # Get data from the document
     doc_data = document_ref.get().to_dict()
@@ -163,7 +163,7 @@ def update_firestore_data():
 
     # Reference the collection and document
     collection_ref = db.collection("parameters")
-    document_ref = collection_ref.document("XKam3IqgkUyoRHDuHjIJ")
+    document_ref = collection_ref.document("parameters")
 
     # Get data from the document
     doc_data = document_ref.get().to_dict()
